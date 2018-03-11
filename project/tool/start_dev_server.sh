@@ -27,7 +27,7 @@ do
     fi
 done<$DEP_FILE
 
-sudo docker run --rm -ti -p 80:80 -p 3306:3306 --name distributed_cli_frame \
+sudo docker run --rm -ti --name distributed_cli_frame \
     $LINK $DEP_SERVICE_VOLUMN \
     -v $ROOT_DIR/:/var/www/distributed_cli_frame \
 kikiyao/debian_php_dev_env start
