@@ -10,7 +10,7 @@ if [ ! -n "$1" ] ;then
     exit
 fi
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/../../
+ROOT_DIR="$(cd "$(dirname $0)" && pwd)"/../../
 
 sed_name $ROOT_DIR/project/config/development/supervisor/queue_worker.conf $1
 sed_name $ROOT_DIR/project/config/production/supervisor/queue_worker.conf $1
