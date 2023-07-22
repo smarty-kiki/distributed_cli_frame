@@ -10,8 +10,11 @@ if [ ! -n "$1" ] ;then
     exit
 fi
 
-ROOT_DIR="$(cd "$(dirname $0)" && pwd)"/../../
+ROOT_DIR="$(cd "$(dirname $0)" && pwd)"/../..
 
-sed_name $ROOT_DIR/project/config/development/supervisor/queue_worker.conf $1
-sed_name $ROOT_DIR/project/config/production/supervisor/queue_worker.conf $1
-sed_name $ROOT_DIR/project/tool/start_dev_server.sh $1
+mv $ROOT_DIR/project/config/production/supervisor/distributed_cli_frame_queue_worker.conf $ROOT_DIR/project/config/production/supervisor/$1_queue_worker.conf
+mv $ROOT_DIR/project/config/development/supervisor/distributed_cli_frame_queue_worker.conf $ROOT_DIR/project/config/development/supervisor/$1_queue_worker.conf
+
+sed_name $ROOT_DIR/project/config/development/supervisor/$1_queue_worker.conf $1
+sed_name $ROOT_DIR/project/config/production/supervisor/$1_queue_worker.conf $1
+sed_name $ROOT_DIR/project/tool/start_development_server.sh $1
